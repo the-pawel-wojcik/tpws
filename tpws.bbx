@@ -1,0 +1,81 @@
+% \RequireBibliographyStyle{style} % Optional for building on top of style.bbx
+\ProvidesFile{tpws.bbx}[2006/03/15 v1.0 biblatexbibliography style]
+
+% \InitializeBibliographyStyle{<code>} % Run <code> at the start of
+% bibliography
+
+% Driver is a macro
+% <entrytype> bibfile, e.g., article, book. Must be lowercase.
+% <entrytype> set to *, works as a fallback
+% \DeclareBibliographyDriver{<entrytype>}{...}
+% \DeclareBibliographyDriver{article}{...}
+% \DeclareBibliographyDriver{book}{...}
+% \DeclareBibliographyDriver{inbook}{...}
+% \DeclareBibliographyDriver{shorthand}{...}
+
+
+\DeclareNameFormat{tpwsAuthor}{%
+    \namepartfamily%
+    \ifthenelse{\value{listcount}<\value{liststop}}{\addcomma}{}
+}
+\DeclareFieldFormat{tpwsTitle}{\emph{#1}}
+\DeclareFieldFormat{tpwsVolume}{{\bf #1}}
+\DeclareFieldFormat{year}{(#1)}
+
+
+% tpws' article driver
+\DeclareBibliographyDriver{article}{%
+    \printnames[tpwsAuthor][-\value{listtotal}]{author}% Print all surnames
+    \newunit\newblock
+    \printfield[tpwsTitle]{title}%
+    \newunit\newblock
+    \printfield{shortjournal}%
+    \newunit\newblock
+    \printfield[tpwsVolume]{volume}%
+    \printfield{year}%
+    \finentry%
+}
+
+% Optional, for reusing, <entrytype> is the one that already exists
+% \DeclareBibliographyAlias{}{<entrytype>}
+
+
+% For additional preamble options in the <key>=<value> format
+% <value> is optional default value if only key is passed as an option
+% valid <datatypes>: boolean,integer,string,xml
+% \DeclareBibliographyOption[<datatype>]{<key>}[<value}]{<code>}
+
+
+% Bibliography style needs to define bibliography environment
+\defbibenvironment{bibliography}
+{\list
+    {}
+    {%
+        \setlength{\leftmargin}{\bibhang}%
+        \setlength{\itemindent}{-\leftmargin}%
+        \setlength{\itemsep}{\bibitemsep}%
+        \setlength{\parsep}{\bibparsep}%
+    }%
+}%
+{\endlist}
+{\item}
+% Useful commands: \labelnumber, \labelnumberwidth
+
+% Similar to bibliography is a bibliography list (\printbiblist)
+\defbibenvironment{shorthand}
+{\list
+    {\printfield[shorthandwidth]{shorthand}}
+    {%
+        \setlength{\labelwidth}{\shorthandwidth}%
+        \setlength{\leftmargin}{\labelwidth}%
+        \setlength{\labelsep}{\biblabelsep}%
+        \addtolength{\leftmargin}{\labelsep}%
+        \setlength{\itemsep}{\bibitemsep}%
+        \setlength{\parsep}{\bibparsep}%
+        \renewcommand*{\makelabel}[1]{##1\hss}%
+    }%
+}
+{\endlist}
+{\item}
+
+\endinput
