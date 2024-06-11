@@ -20,24 +20,34 @@
 }
 \DeclareFieldFormat{tpwsTitle}{\emph{#1}}
 \DeclareFieldFormat{tpwsVolume}{{\bf #1}}
-\DeclareFieldFormat{year}{(#1)}
+\DeclareFieldFormat{date}{(#1)}
 
-
-% tpws' article driver
 \DeclareBibliographyDriver{article}{%
     \printnames[tpwsAuthor][-\value{listtotal}]{author}% Print all surnames
     \newunit\newblock
     \printfield[tpwsTitle]{title}%
     \newunit\newblock
     \printfield{shortjournal}%
-    \newunit\newblock
+    \space
     \printfield[tpwsVolume]{volume}%
-    \printfield{year}%
+    \space
+    \printdate%
     \finentry%
 }
 
-% Optional, for reusing, <entrytype> is the one that already exists
-% \DeclareBibliographyAlias{}{<entrytype>}
+\DeclareBibliographyAlias{*}{article}
+\DeclareBibliographyDriver{incollection}{%
+    \printnames[tpwsAuthor][-\value{listtotal}]{author}% Print all surnames
+    \newunit\newblock
+    \printfield[tpwsTitle]{title}%
+    \newunit\newblock
+    \printfield{shortjournal}%
+    \space
+    \printfield[tpwsVolume]{volume}%
+    \space
+    \printdate%
+    \finentry%
+}
 
 
 % For additional preamble options in the <key>=<value> format

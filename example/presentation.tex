@@ -1,0 +1,18 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage[style=tpws]{biblatex}
+\addbibresource{example.bib}
+\newcommand{\beamerCite}[1]{\footnote[frame]{\tiny \fullcite{#1}}}
+
+\begin{document}
+\begin{frame}
+    \frametitle{Demonstration of the tpws bibliography style}
+    Main content of the frame. References appear as footnotes. The bib file
+    got to have the \texttt{shortjournal} field set to the journal
+    abbreviation.\beamerCite{wojcik} 
+
+    The reference shows a list of authors (only last names) \emph{the full
+    title shows up in italics}. journal abbreviation {\bf volume}
+    (year).\beamerCite{wojcik2}
+\end{frame}
+\end{document}

@@ -1,10 +1,9 @@
 # Custom bibliography style for biblatex
-This custom style was recommended to be used in presentations.
-
+This custom style was recommended to be used in the `beamer` presentations.
 
 ## Installation 
-
-You should have a local `texmf`. If you know where it is this is what you do
+You should have a local `texmf` directory. If you know where it is this is what
+you do
 ```bash
 texmf/tex/latex/biblatex/bbx # this is where .bbx goes
 texmf/tex/latex/biblatex/cbx # this is where .cbx goes
@@ -16,3 +15,4 @@ citations look like.
 
 ## Links
 [biblatex](https://www.ctan.org/pkg/biblatex)
+[beamer](https://ctan.org/pkg/beamer)
